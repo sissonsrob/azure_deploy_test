@@ -12,8 +12,12 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v3.3.0
 
+            - name: Install Modules
+              shell: pwsh
+              run: |
+                Install-Module Az.Resources
+
             - name: deploy ARM
               shell: pwsh
               run: |
                 New-AzResourceGroupDeployment -ResourceGroupName "epac-testing" -TemplateFile .\deploy.json
-                
